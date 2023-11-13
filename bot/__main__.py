@@ -7,7 +7,7 @@ from sys import executable
 from time import time, monotonic
 from uuid import uuid4
 from httpx import AsyncClient as xclient
-
+from quoters import Quote
 from aiofiles import open as aiopen
 from aiofiles.os import path as aiopath
 from aiofiles.os import remove as aioremove
