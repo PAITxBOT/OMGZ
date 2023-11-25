@@ -232,7 +232,7 @@ async def remove_unwanted(file_, lremname, lprefix):
     if lprefix:
         nfile_ = lprefix.replace('\s', ' ') + file_
         lprefix = re_sub(r'<.*?>', '', lprefix).replace('\s', ' ')
-        if not file_.startswith(prefix):
+        if not file_.startswith(lprefix):
             file_ = f"{lprefix}{file_}"
     return file_
 
