@@ -229,4 +229,4 @@ async def remove_unwanted(file_, lremname):
             zName = re_sub(args[0], '', zName)
     file_ = zName + ospath.splitext(file_)[1]
     LOGGER.info(f"New File Name: {file_}")
-    return file_
+    return file_, cap_mono
