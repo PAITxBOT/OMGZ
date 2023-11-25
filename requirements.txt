@@ -28,6 +28,7 @@ pyrofork==2.2.10
 python-dotenv
 python-magic
 qbittorrent-api
+quoters
 requests
 telegraph
 tenacity
