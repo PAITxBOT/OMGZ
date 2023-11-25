@@ -2,7 +2,6 @@
 from asyncio import sleep
 from html import escape
 from logging import ERROR, getLogger
-from re import search as re_search
 from os import path as ospath, walk
 from re import match as re_match, sub as re_sub
 from time import time
@@ -115,11 +114,9 @@ class TgUploader:
             return False
         return True
 
-  
     async def __prepare_file(self, file_, dirpath):
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
-            #file_ = f"<b>{self.__lprefix} {dfile_}</b>"
             cap_mono = f"<b>{self.__lprefix} {file_}</b>"
             self.__lprefix = re_sub('<.*?>', '', self.__lprefix)
             if self.__listener.seed and not self.__listener.newDir and not dirpath.endswith("/splited_files_z"):
@@ -158,7 +155,7 @@ class TgUploader:
                 new_path = ospath.join(dirpath, f"{name}{ext}")
                 await aiorename(self.__up_path, new_path)
                 self.__up_path = new_path
-        return file_, cap_mono
+        return cap_mono
 
     async def __get_input_media(self, subkey, key, msg_list=None):
         rlist = []
