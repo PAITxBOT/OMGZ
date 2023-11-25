@@ -2,6 +2,7 @@
 from asyncio import sleep
 from html import escape
 from logging import ERROR, getLogger
+from re import search as re_search
 from os import path as ospath, walk
 from re import match as re_match, sub as re_sub
 from time import time
