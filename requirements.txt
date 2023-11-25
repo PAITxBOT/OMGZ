@@ -78,7 +78,7 @@ pycryptodomex==3.18.0
 pymediainfo==6.0.1
 pymongo==4.4.1
 pyparsing==3.1.1
-PyroFork==2.2.10
+pyrogram==2.0.66
 pyshorteners==1.0.1
 PySocks==1.7.1
 python-dotenv==1.0.0
