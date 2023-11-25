@@ -207,7 +207,7 @@ async def split_file(path, size, file_, dirpath, split_size, listener, start_tim
             LOGGER.error(err)
     return True
 
-async def remove_unwanted(file_, lremname, lprefix):
+async def remove_unwanted(file_, lremname):
     #user_dict = user_data.get(user_id, {})
     #ftag, ctag = ('m', 'MIRROR') if isMirror else ('l', 'LEECH')
     #prefix = config_dict[f'{ctag}_FILENAME_PREFIX'] if (val:=user_dict.get(f'{ftag}prefix', '')) == '' else val
