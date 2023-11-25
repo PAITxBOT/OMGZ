@@ -207,7 +207,7 @@ async def split_file(path, size, file_, dirpath, split_size, listener, start_tim
             LOGGER.error(err)
     return True
 
-async def remove_unwanted(file_, lremname):
+async def remove_unwanted(file_, lremname, prefix):
     #user_dict = user_data.get(user_id, {})
     #ftag, ctag = ('m', 'MIRROR') if isMirror else ('l', 'LEECH')
     #prefix = config_dict[f'{ctag}_FILENAME_PREFIX'] if (val:=user_dict.get(f'{ftag}prefix', '')) == '' else val
@@ -228,5 +228,11 @@ async def remove_unwanted(file_, lremname):
             zName = re_sub(args[0], '', zName)
     file_ = zName + ospath.splitext(file_)[1]
     LOGGER.info(f"New File Name: {file_}")
+    nfile_ = file_
+    if prefix:
+        nfile_ = prefix.replace('\s', ' ') + file_
+        prefix = re_sub(r'<.*?>', '', prefix).replace('\s', ' ')
+        if not file_.startswith(prefix):
+            file_ = f"{prefix}{file_}"
     return file_
 
