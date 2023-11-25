@@ -114,6 +114,28 @@ class TgUploader:
             return False
         return True
 
+    async def remove_unwanted(file_, lremname):
+    #user_dict = user_data.get(user_id, {})
+    #ftag, ctag = ('m', 'MIRROR') if isMirror else ('l', 'LEECH')
+    #prefix = config_dict[f'{ctag}_FILENAME_PREFIX'] if (val:=user_dict.get(f'{ftag}prefix', '')) == '' else val
+    file_ = re_sub(r'www\S+', '', file_)
+    if lremname and not lremname.startswith('|'):
+        lremname = f"|{lremname}"
+    lremname = lremname.replace('\s', ' ')
+    div = lremname.split("|")
+    zName = ospath.splitext(file_)[0]
+    for rep in range(1, len(div)):
+        args = div[rep].split(":")
+        num_args = len(args)
+        if num_args == 3:
+            zName = re_sub(args[0], args[1], zName, int(args[2]))
+        elif num_args == 2:
+            zName = re_sub(args[0], args[1], zName)
+        elif num_args == 1:
+            zName = re_sub(args[0], '', zName)
+    file_ = zName + ospath.splitext(file_)[1]
+    LOGGER.info(f"New File Name: {file_}")
+  
     async def __prepare_file(self, file_, dirpath):
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
@@ -129,7 +151,7 @@ class TgUploader:
                 await aiorename(self.__up_path, new_path)
                 self.__up_path = new_path
         else:
-            cap_mono = f"<b>{self.__lprefix} {file_}</b>"
+            cap_mono = f"<b>{file_}</b>"
         if len(file_) > 60:
             if is_archive(file_):
                 name = get_base_name(file_)
