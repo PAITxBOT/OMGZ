@@ -136,6 +136,7 @@ class TgUploader:
             zName = re_sub(args[0], '', zName)
     file_ = zName + ospath.splitext(file_)[1]
     LOGGER.info(f"New File Name: {file_}")
+    return file_
   
     async def __prepare_file(self, file_, dirpath):
         if self.__lprefix or self.__lremname:
