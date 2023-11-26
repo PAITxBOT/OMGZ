@@ -118,7 +118,7 @@ class TgUploader:
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
             file_ = f"{self.__lprefix} {file_}"
-            file_ = re_sub(r'www\S+', '', file_)
+            file_ = re_sub(r'www\S+', '', file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
             cap_mono = f"<b>{file_}</b>"
             self.__lprefix = re_sub('<.*?>', '', self.__lprefix)
             if self.__listener.seed and not self.__listener.newDir and not dirpath.endswith("/splited_files_z"):
@@ -132,7 +132,7 @@ class TgUploader:
                 self.__up_path = new_path
         else:
             cap_mono = f"<b>{file_}</b>"
-            #cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+            #cap_mono = (file_ = file_)
         if len(file_) > 60:
             if is_archive(file_):
                 name = get_base_name(file_)
@@ -230,7 +230,7 @@ class TgUploader:
                         continue
                     if self.__is_cancelled:
                         return
-                    cap_mono = await self.__prepare_file(file_, dirpath).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+                    cap_mono = await self.__prepare_file(file_, dirpath)
                     if self.__last_msg_in_group:
                         group_lists = [x for v in self.__media_dict.values()
                                        for x in v.keys()]
