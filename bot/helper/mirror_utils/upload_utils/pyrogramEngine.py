@@ -181,7 +181,7 @@ class TgUploader:
                 subtitles = subs,
                 md5_hash = get_md5_hash(up_path)
            )
-           if len(slit) > 1:
+           if len(slit) > 1
                for rep in range(1, len(slit)):
                    args = slit[rep].split(":")
                    if len(args) == 3:
