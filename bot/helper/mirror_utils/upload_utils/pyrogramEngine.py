@@ -117,7 +117,7 @@ class TgUploader:
     async def __prepare_file(self, file_, dirpath):
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
-            file_ = re_sub(r'www\S+', '', file_)
+            file_ = re_sub(r'www\S+', '', {self.__lprefix} {file_})
             cap_mono = f"<b>{self.__lprefix} {file_}</b>"
             self.__lprefix = re_sub('<.*?>', '', self.__lprefix)
             if self.__listener.seed and not self.__listener.newDir and not dirpath.endswith("/splited_files_z"):
