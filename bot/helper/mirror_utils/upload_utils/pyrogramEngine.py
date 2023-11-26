@@ -117,7 +117,7 @@ class TgUploader:
             return False
         return True
 
-    async def __prepare_file(self, file_, dirpath):
+    async def __prepare_file(self, file_, dirpath, isMirror=False):
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
             file_ = f"{self.__lprefix} {file_}"
