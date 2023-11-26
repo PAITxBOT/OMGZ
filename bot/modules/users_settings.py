@@ -126,7 +126,7 @@ async def update_user_settings(query):
     user_id = query.from_user.id
     tpath = f"Thumbnails/{user_id}.jpg"
     if not ospath.exists(tpath):
-        tpath = "https://graph.org/file/25545597de34c640b31d6.jpg"
+        tpath = "https://graph.org/file/dc7cd656c758e5bea4b85.jpg"
     await query.message.edit_media(
         media=InputMediaPhoto(media=tpath, caption=msg), reply_markup=button)
 
@@ -136,7 +136,7 @@ async def user_settings(_, message):
     user_id = message.from_user.id
     tpath = f"Thumbnails/{user_id}.jpg"
     if not ospath.exists(tpath):
-        tpath = "https://graph.org/file/25545597de34c640b31d6.jpg"
+        tpath = "https://graph.org/file/dc7cd656c758e5bea4b85.jpg"
     usetMsg = await message.reply_photo(tpath, caption=msg, reply_markup=button)
     await auto_delete_message(message, usetMsg)
 
@@ -334,8 +334,8 @@ Timeout: 60 sec
             buttons.ibutton("Disable Media Group", f"userset {user_id} mgroup")
         else:
             buttons.ibutton("Enable Media Group", f"userset {user_id} mgroup")
-        buttons.ibutton("Back", f"userset {user_id} back")
-        buttons.ibutton("Close", f"userset {user_id} close")
+        buttons.ibutton("ʙᴀᴄᴋ", f"userset {user_id} back")
+        buttons.ibutton("ᴄʟᴏsᴇ", f"userset {user_id} close")
         __msg = "Send Leech split size don't add unit, the default unit is <b>GB</b>\n"
         __msg += "\nExamples:\n4 for 4GB\n0.5 for 512MB\n\nTimeout: 60 sec"
         await editMessage(message, __msg, buttons.build_menu(1))
@@ -367,8 +367,8 @@ Timeout: 60 sec
         buttons = ButtonMaker()
         if await aiopath.exists(rclone_path):
             buttons.ibutton("Delete Rclone Config", f"userset {user_id} drcc")
-        buttons.ibutton("Back", f"userset {user_id} back")
-        buttons.ibutton("Close", f"userset {user_id} close")
+        buttons.ibutton("ʙᴀᴄᴋ", f"userset {user_id} back")
+        buttons.ibutton("ᴄʟᴏsᴇ", f"userset {user_id} close")
         await editMessage(message, 'Send Rclone Config. Timeout: 60 sec', buttons.build_menu(1))
         pfunc = partial(add_rclone, pre_event=query)
         await event_handler(client, query, pfunc, document=True)
@@ -391,9 +391,9 @@ Timeout: 60 sec
             await query.answer()
             buttons = ButtonMaker()
             if user_dict.get('lprefix', False) or config_dict['LEECH_FILENAME_PREFIX']:
-                buttons.ibutton("Remove Leech Prefix", f"userset {user_id} rlprefix")
-            buttons.ibutton("Back", f"userset {user_id} back")
-            buttons.ibutton("Close", f"userset {user_id} close")
+                buttons.ibutton("ʀᴇᴍᴏᴠᴇ ʟᴇᴇᴄʜ ᴘʀᴇғɪx", f"userset {user_id} rlprefix")
+            buttons.ibutton("ʙᴀᴄᴋ", f"userset {user_id} back")
+            buttons.ibutton("ᴄʟᴏsᴇ", f"userset {user_id} close")
         rmsg = f'''
 Send Leech Prefix. Timeout: 60 sec
 Examples:
@@ -421,9 +421,9 @@ Check all available formatting options <a href="https://core.telegram.org/bots/a
         await query.answer()
         buttons = ButtonMaker()
         if user_dict.get('user_dump', False) or 'user_dump' not in user_dict and config_dict['USER_DUMP']:
-            buttons.ibutton("Remove USER DUMP",f"userset {user_id} rudump")
-        buttons.ibutton("Back", f"userset {user_id} back")
-        buttons.ibutton("Close", f"userset {user_id} close")
+            buttons.ibutton("ʀᴇᴍᴏᴠᴇ ʟᴇᴇᴄʜ ᴅᴜᴍᴘ",f"userset {user_id} rudump")
+        buttons.ibutton("ʙᴀᴄᴋ", f"userset {user_id} back")
+        buttons.ibutton("ᴄʟᴏsᴇ", f"userset {user_id} close")
         udmsg = f'''
 Send USER DUMP ID(Ex: -100*******69).
 
@@ -445,11 +445,11 @@ Timeout: 60 sec
         await query.answer()
         buttons = ButtonMaker()
         if user_dict.get('lremname', False) or config_dict['LEECH_REMOVE_UNWANTED']:
-            buttons.ibutton("Remove Leech Unwanted",f"userset {user_id} rlremname")
-        buttons.ibutton("Back", f"userset {user_id} back")
-        buttons.ibutton("Close", f"userset {user_id} close")
+            buttons.ibutton("ʀᴇᴍᴏᴠᴇ ʟᴇᴇᴄʜ ʀᴇᴍɴᴀᴍᴇ",f"userset {user_id} rlremname")
+        buttons.ibutton(" ʙᴀᴄᴋ", f"userset {user_id} back")
+        buttons.ibutton("ᴄʟᴏsᴇ", f"userset {user_id} close")
         rmsg = f'''
-<b>Send Leech Unwanted</b>
+<b>sᴇɴᴅ ʟᴇᴇᴄʜ ʀᴇᴍɴᴀᴍᴇ</b>
 
 Examples: <code>mltb|jmdkh|wzml</code>
 This will remove if any of those words found in filename.
