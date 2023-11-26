@@ -132,7 +132,7 @@ class TgUploader:
                 self.__up_path = new_path
         else:
             cap_mono = f"<b>{file_}</b>"
-            cap_mono = format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+            cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
         if len(file_) > 60:
             if is_archive(file_):
                 name = get_base_name(file_)
