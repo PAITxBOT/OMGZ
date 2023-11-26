@@ -96,31 +96,27 @@ async def get_user_settings(from_user):
     else:
         lremname = 'None'
 
-    if user_dict:
-        buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
+    #if user_dict:
+    #    buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
 
     buttons.ibutton("Close", f"userset {user_id} close")
 
     text = f"""
-<u>User Settings of {name}</u>
+<b><u>ʟᴇᴇᴄʜ sᴇᴛᴛɪɴɢs ғᴏʀ</b> - {name}</u>
 
-<code>TG Premium Status:</code> <b>{IS_PREMIUM_USER}</b>
-
-<code>Leech Type       :</code> <b>{ltype}</b>
-<code>Leech Prefix     :</code> <b>{escape(lprefix)}</b>
-<code>Leech Split Size :</code> <b>{split_size}</b>
-
-<code>Equal Splits     :</code> <b>{equal_splits}</b>
-<code>Thumbnail        :</code> <b>{thumbmsg}</b>
-<code>Media Group      :</code> <b>{media_group}</b>
-
-<code>YT-DLP Options   :</code> <b>{escape(ytopt)}</b>
-<code>Rclone Config    :</code> <b>{rccmsg}</b>
-
-<code>User Dump        :</code> <b>{user_dump}</b>
-<code>Remove Unwanted  :</code> <b>{lremname}</b>
+<b>ʟᴇᴇᴄʜ ᴛʏᴘᴇ        :</b> <code>{ltype}</code>
+<b>ʟᴇᴇᴄʜ ᴘʀᴇғɪx       :</b> <code>{escape(lprefix)}</code>
+<b>ʟᴇᴇᴄʜ sᴘʟɪᴛ sɪᴢᴇ    :</b> <code>{split_size}</code>
+<b>ᴇǫᴜᴀʟ sᴘʟɪᴛs       :</b> <code>{equal_splits}</code>
+<b>ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ  :</b> <code>{thumbmsg}</code>
+<b>ᴛɢ ᴘʀᴇᴍɪᴜᴍ sᴛᴀᴛᴜs :</b> <code>{IS_PREMIUM_USER}</code>
+<b>ᴍᴇᴅɪᴀ ɢʀᴏᴜᴘ       :</b> <code>{media_group}</code>
+<b>ʏᴛ-ᴅʟᴘ ᴏᴘᴛɪᴏɴs     :</b> <code>{escape(ytopt)}</code>
+<b>ʀᴄʟᴏɴᴇ ᴄᴏɴғɪɢ      :</b> <code>{rccmsg}</code>
+<b>ʟᴇᴇᴄʜ ᴅᴜᴍᴘ        :</b> <code>{user_dump}</code>
+<b>ʀᴇᴍᴏᴠᴇ ᴜɴᴡᴀɴᴛᴇᴅ   :</b> <code>{lremname}</code>
 """
-    return text, buttons.build_menu(1)
+    return text, buttons.build_menu(2)
 
 
 async def update_user_settings(query):
