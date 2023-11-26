@@ -190,7 +190,7 @@ class TgUploader:
                        cap_mono = cap_mono.replace(args[0], args[1])
                    elif len(args) == 1:
                        cap_mono = cap_mono.replace(args[0], '')
-          cap_mono = cap_mono.replace('%%', '|').replace('&%&', '{').replace('$%$', '}')
+           cap_mono = cap_mono.replace('%%', '|').replace('&%&', '{').replace('$%$', '}')
         return cap_mono
         #return cap_mono
 
