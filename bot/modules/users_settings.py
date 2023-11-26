@@ -465,7 +465,7 @@ Timeout: 60 sec
     elif data[2] == 'lcaption':
         await query.answer()
         buttons = ButtonMaker()
-        if user_dict.get('lcaption', False) or config_dict['LEECH_REMOVE_UNWANTED']:
+        if user_dict.get('lcaption', False) or config_dict['LEECH_FILENAME_CAPTION']:
             buttons.ibutton("Remove Leech Caption",f"userset {user_id} rlcaption")
         buttons.ibutton("Back", f"userset {user_id} back")
         buttons.ibutton("Close", f"userset {user_id} close")
