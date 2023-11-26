@@ -118,8 +118,9 @@ class TgUploader:
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
             file_ = f"{self.__lprefix} {file_}"
-            file_ = re_sub(r'www\S+', '', file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
-            cap_mono = f"<b>{file_}</b>"
+            file_ = re_sub(r'www\S+', '', file_)
+            nfile_ = file_.replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+            cap_mono = f"<b>{nfile_}</b>"
             self.__lprefix = re_sub('<.*?>', '', self.__lprefix)
             if self.__listener.seed and not self.__listener.newDir and not dirpath.endswith("/splited_files_z"):
                 dirpath = f'{dirpath}/copied_z'
