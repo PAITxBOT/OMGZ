@@ -96,14 +96,6 @@ async def get_user_settings(from_user):
     else:
         lremname = 'None'
 
-    buttons.ibutton("Leech Caption", f"userset {user_id} lcaption")
-    if user_dict.get('lcaption', False):
-        lcaption = user_dict['lcaption']
-    elif 'lcaption' not in user_dict and (HS := config_dict['LEECH_FILENAME_CAPTION']):
-        lcaption = HS
-    else:
-        lcaption = 'None'
-
     if user_dict:
         buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
 
@@ -123,7 +115,6 @@ async def get_user_settings(from_user):
 <code>Media Group      :</code> <b>{media_group}</b>
 
 <code>YT-DLP Options   :</code> <b>{escape(ytopt)}</b>
-<code>Leech Caption    :</code> <b>{lcaption}</b>
 <code>Rclone Config    :</code> <b>{rccmsg}</b>
 
 <code>User Dump        :</code> <b>{user_dump}</b>
@@ -239,27 +230,6 @@ async def set_remname(_, message, pre_event):
     await update_user_settings(pre_event)
     if DATABASE_URL:
         await DbManager().update_user_data(user_id)
-
-"""async def set_caption(_, message, pre_event):
-    user_id = message.from_user.id
-    handler_dict[user_id] = False
-    value = message.text
-    update_user_ldata(user_id, 'lcaption', value)
-    await message.delete()
-    await update_user_settings(pre_event)
-    if DATABASE_URL:
-        await DbManager().update_user_data(user_id)"""
-
-async def set_caption(_, message, pre_event):
-    user_id = message.from_user.id
-    handler_dict[user_id] = False
-    value = message.text
-    if len(re_sub('<.*?>', '', value)) <= 30:
-        update_user_ldata(user_id, 'lcaption', value)
-        await message.delete()
-        if DATABASE_URL:
-            await DbManager().update_user_data(user_id)
-    await update_user_settings(pre_event)
 
 async def event_handler(client, query, pfunc, photo=False, document=False):
     user_id = query.from_user.id
@@ -470,30 +440,6 @@ Timeout: 60 sec
         handler_dict[user_id] = False
         await query.answer()
         update_user_ldata(user_id, 'user_dump', '')
-        await update_user_settings(query)
-        if DATABASE_URL:
-            await DbManager().update_user_data(user_id)
-    elif data[2] == 'lcaption':
-        await query.answer()
-        buttons = ButtonMaker()
-        if user_dict.get('lcaption', False) or config_dict['LEECH_FILENAME_CAPTION']:
-            buttons.ibutton("Remove Leech Caption",f"userset {user_id} rlcaption")
-        buttons.ibutton("Back", f"userset {user_id} back")
-        buttons.ibutton("Close", f"userset {user_id} close")
-        rmsg = f'''
-<b>Send Leech Caption</b>
-
-Examples: <code>mltb|jmdkh|wzml</code>
-
-Timeout: 60 sec
-'''
-        await editMessage(message, rmsg, buttons.build_menu(1))
-        pfunc = partial(set_caption, pre_event=query)
-        await event_handler(client, query, pfunc)
-    elif data[2] == 'rlcaption':
-        handler_dict[user_id] = False
-        await query.answer()
-        update_user_ldata(user_id, 'lcaption', '')
         await update_user_settings(query)
         if DATABASE_URL:
             await DbManager().update_user_data(user_id)
