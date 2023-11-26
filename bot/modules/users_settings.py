@@ -240,7 +240,7 @@ async def set_remname(_, message, pre_event):
     if DATABASE_URL:
         await DbManager().update_user_data(user_id)
 
-async def set_caption(_, message, pre_event):
+"""async def set_caption(_, message, pre_event):
     user_id = message.from_user.id
     handler_dict[user_id] = False
     value = message.text
@@ -248,7 +248,18 @@ async def set_caption(_, message, pre_event):
     await message.delete()
     await update_user_settings(pre_event)
     if DATABASE_URL:
-        await DbManager().update_user_data(user_id)
+        await DbManager().update_user_data(user_id)"""
+
+async def set_caption(_, message, pre_event):
+    user_id = message.from_user.id
+    handler_dict[user_id] = False
+    value = message.text
+    if len(re_sub('<.*?>', '', value)) <= 30:
+        update_user_ldata(user_id, 'lcaption', value)
+        await message.delete()
+        if DATABASE_URL:
+            await DbManager().update_user_data(user_id)
+    await update_user_settings(pre_event)
 
 async def event_handler(client, query, pfunc, photo=False, document=False):
     user_id = query.from_user.id
