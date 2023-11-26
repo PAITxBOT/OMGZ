@@ -132,10 +132,10 @@ class TgUploader:
                 self.__up_path = new_path
         else:
             cap_mono = f"<b>{file_}</b>"
-            cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+            #cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
         if len(file_) > 60:
             if is_archive(file_):
-                name = get_base_name(file_)
+                name = get_base_name(file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
                 ext = file_.split(name, 1)[1]
             elif match := re_match(r'.+(?=\..+\.0*\d+$)|.+(?=\.part\d+\..+)', file_):
                 name = match.group(0)
