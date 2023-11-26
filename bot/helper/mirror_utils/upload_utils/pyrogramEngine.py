@@ -135,7 +135,7 @@ class TgUploader:
             #cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
         if len(file_) > 60:
             if is_archive(file_):
-                name = get_base_name(file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+                name = get_base_name(file_)#.replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
                 ext = file_.split(name, 1)[1]
             elif match := re_match(r'.+(?=\..+\.0*\d+$)|.+(?=\.part\d+\..+)', file_):
                 name = match.group(0)
@@ -230,7 +230,7 @@ class TgUploader:
                         continue
                     if self.__is_cancelled:
                         return
-                    cap_mono = await self.__prepare_file(file_, dirpath)
+                    cap_mono = await self.__prepare_file(file_, dirpath).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
                     if self.__last_msg_in_group:
                         group_lists = [x for v in self.__media_dict.values()
                                        for x in v.keys()]
