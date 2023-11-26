@@ -132,8 +132,8 @@ class TgUploader:
                 await aiorename(self.__up_path, new_path)
                 self.__up_path = new_path
         else:
-            cap_mono = f"<b>{file_}</b>"
-            #cap_mono = (file_ = file_)
+            nfile_ = file_.replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+            cap_mono = f"<b>{nfile_}</b>"
         if len(file_) > 60:
             if is_archive(file_):
                 name = get_base_name(file_)
