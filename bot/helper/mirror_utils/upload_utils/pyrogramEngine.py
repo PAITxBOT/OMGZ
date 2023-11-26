@@ -135,33 +135,7 @@ class TgUploader:
                 self.__up_path = new_path
         else:
             cap_mono = f"<b>{file_}</b>"
-        if len(file_) > 60:
-            if is_archive(file_):
-                name = get_base_name(file_)
-                ext = file_.split(name, 1)[1]
-            elif match := re_match(r'.+(?=\..+\.0*\d+$)|.+(?=\.part\d+\..+)', file_):
-                name = match.group(0)
-                ext = file_.split(name, 1)[1]
-            elif len(fsplit := ospath.splitext(file_)) > 1:
-                name = fsplit[0]
-                ext = fsplit[1]
-            else:
-                name = file_
-                ext = ''
-            extn = len(ext)
-            remain = 60 - extn
-            name = name[:remain]
-            if self.__listener.seed and not self.__listener.newDir and not dirpath.endswith("/splited_files_z"):
-                dirpath = f'{dirpath}/copied_z'
-                await makedirs(dirpath, exist_ok=True)
-                new_path = ospath.join(dirpath, f"{name}{ext}")
-                self.__up_path = await copy(self.__up_path, new_path)
-            else:
-                new_path = ospath.join(dirpath, f"{name}{ext}")
-                await aiorename(self.__up_path, new_path)
-                self.__up_path = new_path
-        cap_mono = f"<b>{file_}</b>"      
-        #cap_mono =  f"<{config_dict['CAP_FONT']}>{nfile_}</{config_dict['CAP_FONT']}>" if config_dict['CAP_FONT'] else nfile_
+        #['CAP_FONT']}>" if config_dict['CAP_FONT'] else nfile_
         if lcaption and dirpath and not isMirror:
         
             def lowerVars(match):
@@ -181,7 +155,7 @@ class TgUploader:
                 subtitles = subs,
                 md5_hash = get_md5_hash(up_path)
            )
-           if len(slit) > 1
+           if len(slit) > 1:
                for rep in range(1, len(slit)):
                    args = slit[rep].split(":")
                    if len(args) == 3:
