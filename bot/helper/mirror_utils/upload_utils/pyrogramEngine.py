@@ -135,7 +135,7 @@ class TgUploader:
             #cap_mono = slit[0].format(file_ = file_).replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
         if len(file_) > 60:
             if is_archive(file_):
-                name = get_base_name(file_)#.replace('HEVC','#HEVC').replace('.mkv','').replace('.mp4','')
+                name = get_base_name(file_)
                 ext = file_.split(name, 1)[1]
             elif match := re_match(r'.+(?=\..+\.0*\d+$)|.+(?=\.part\d+\..+)', file_):
                 name = match.group(0)
