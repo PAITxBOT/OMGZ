@@ -88,7 +88,7 @@ async def get_user_settings(from_user):
     else:
         user_dump = 'None'
 
-    buttons.ibutton("Leech Remove Unwanted", f"userset {user_id} lremname")
+    buttons.ibutton("ʀᴇᴍɴᴀᴍᴇ", f"userset {user_id} lremname")
     if user_dict.get('lremname', False):
         lremname = user_dict['lremname']
     elif 'lremname' not in user_dict and (LRU := config_dict['LEECH_REMOVE_UNWANTED']):
@@ -99,22 +99,24 @@ async def get_user_settings(from_user):
     #if user_dict:
     #    buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
 
-    buttons.ibutton("Close", f"userset {user_id} close")
+    buttons.ibutton("× ᴄʟᴏsᴇ ᴛʜᴇ sᴇᴛᴛɪɴɢ ×", f"userset {user_id} close")
 
     text = f"""
-<b><u>ʟᴇᴇᴄʜ sᴇᴛᴛɪɴɢs ғᴏʀ</b> - {name}</u>
+<b><u>ʟᴇᴇᴄʜ sᴇᴛᴛɪɴɢs ғᴏʀ - {name}</u></b>
 
-<b>ʟᴇᴇᴄʜ ᴛʏᴘᴇ        :</b> <code>{ltype}</code>
-<b>ʟᴇᴇᴄʜ ᴘʀᴇғɪx       :</b> <code>{escape(lprefix)}</code>
-<b>ʟᴇᴇᴄʜ sᴘʟɪᴛ sɪᴢᴇ    :</b> <code>{split_size}</code>
-<b>ᴇǫᴜᴀʟ sᴘʟɪᴛs       :</b> <code>{equal_splits}</code>
-<b>ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ  :</b> <code>{thumbmsg}</code>
-<b>ᴛɢ ᴘʀᴇᴍɪᴜᴍ sᴛᴀᴛᴜs :</b> <code>{IS_PREMIUM_USER}</code>
-<b>ᴍᴇᴅɪᴀ ɢʀᴏᴜᴘ       :</b> <code>{media_group}</code>
-<b>ʏᴛ-ᴅʟᴘ ᴏᴘᴛɪᴏɴs     :</b> <code>{escape(ytopt)}</code>
-<b>ʀᴄʟᴏɴᴇ ᴄᴏɴғɪɢ      :</b> <code>{rccmsg}</code>
-<b>ʟᴇᴇᴄʜ ᴅᴜᴍᴘ        :</b> <code>{user_dump}</code>
-<b>ʀᴇᴍᴏᴠᴇ ᴜɴᴡᴀɴᴛᴇᴅ   :</b> <code>{lremname}</code>
+<b>┌  ʟᴇᴇᴄʜ ᴛʏᴘᴇ :</b> <code>{ltype}</code>
+<b>├  ʟᴇᴇᴄʜ ᴘʀᴇғɪx :</b> <code>{escape(lprefix)}</code>
+<b>├  ʟᴇᴇᴄʜ sᴘʟɪᴛ sɪᴢᴇ :</b> <code>{split_size}</code>
+<b>├  ᴇǫᴜᴀʟ sᴘʟɪᴛs :</b> <code>{equal_splits}</code>
+<b>├  ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ :</b> <code>{thumbmsg}</code>
+<b>├  ᴛɢ ᴘʀᴇᴍɪᴜᴍ sᴛᴀᴛᴜs :</b> <code>{IS_PREMIUM_USER}</code>
+<b>├  ᴍᴇᴅɪᴀ ɢʀᴏᴜᴘ :</b> <code>{media_group}</code>
+<b>├  ʏᴛ-ᴅʟᴘ ᴏᴘᴛɪᴏɴs :</b> <code>{escape(ytopt)}</code>
+<b>├  ʀᴄʟᴏɴᴇ ᴄᴏɴғɪɢ :</b> <code>{rccmsg}</code>
+<b>├  ʟᴇᴇᴄʜ ᴅᴜᴍᴘ :</b> <code>{user_dump}</code>
+<b>└  ʀᴇᴍɴᴀᴍᴇ :</b> <code>{lremname}</code>
+
+<b>~ ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ - <a href="https://t.me/Hari_OP">ʜᴀʀɪ ᠰ ᴛɢ​</a></b>
 """
     return text, buttons.build_menu(2)
 
