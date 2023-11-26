@@ -49,14 +49,14 @@ async def get_user_settings(from_user):
     split_size = get_readable_file_size(split_size)
 
     if user_dict.get('equal_splits', False) or 'equal_splits' not in user_dict and config_dict['EQUAL_SPLITS']:
-        equal_splits = 'Enabled'
+        equal_splits = 'ᴇɴᴀʙʟᴇᴅ'
     else:
-        equal_splits = 'Disabled'
+        equal_splits = 'ᴅɪsᴀʙʟᴇᴅ'
 
     if user_dict.get('media_group', False) or 'media_group' not in user_dict and config_dict['MEDIA_GROUP']:
-        media_group = 'Enabled'
+        media_group = 'ᴇɴᴀʙʟᴇᴅ'
     else:
-        media_group = 'Disabled'
+        media_group = 'ᴅɪsᴀʙʟᴇᴅ'
 
     buttons.ibutton("ʏᴛ-ᴅʟᴘ ᴏᴘᴛɪᴏɴs", f"userset {user_id} yto")
     if user_dict.get('yt_opt', False):
@@ -64,7 +64,7 @@ async def get_user_settings(from_user):
     elif 'yt_opt' not in user_dict and (YTO := config_dict['YT_DLP_OPTIONS']):
         ytopt = YTO
     else:
-        ytopt = 'None'
+        ytopt = 'ɴᴏɴᴇ'
 
     buttons.ibutton("sᴇᴛ ᴘʀᴇғɪx", f"userset {user_id} lprefix")
     if user_dict.get('lprefix', False):
@@ -86,7 +86,7 @@ async def get_user_settings(from_user):
     elif 'user_dump' not in user_dict and (UD := config_dict['USER_DUMP']):
         user_dump = UD
     else:
-        user_dump = 'None'
+        user_dump = 'ɴᴏɴᴇ'
 
     buttons.ibutton("ʀᴇᴍɴᴀᴍᴇ", f"userset {user_id} lremname")
     if user_dict.get('lremname', False):
@@ -94,7 +94,7 @@ async def get_user_settings(from_user):
     elif 'lremname' not in user_dict and (LRU := config_dict['LEECH_REMOVE_UNWANTED']):
         lremname = LRU
     else:
-        lremname = 'None'
+        lremname = 'ɴᴏɴᴇ'
 
     #if user_dict:
     #    buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
@@ -102,7 +102,7 @@ async def get_user_settings(from_user):
     buttons.ibutton("× ᴄʟᴏsᴇ ᴛʜᴇ sᴇᴛᴛɪɴɢ ×", f"userset {user_id} close")
 
     text = f"""
-<b><u>ʟᴇᴇᴄʜ sᴇᴛᴛɪɴɢs ғᴏʀ - {name}</u></b>
+<b><u>🌟 ʟᴇᴇᴄʜ sᴇᴛᴛɪɴɢs ғᴏʀ - {name}</u></b>
 
 <b>┌  ʟᴇᴇᴄʜ ᴛʏᴘᴇ :</b> <code>{ltype}</code>
 <b>├  ʟᴇᴇᴄʜ ᴘʀᴇғɪx :</b> <code>{escape(lprefix)}</code>
