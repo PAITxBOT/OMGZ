@@ -18,7 +18,6 @@ from tenacity import (RetryError, retry, retry_if_exception_type,
 from bot import GLOBAL_EXTENSION_FILTER, IS_PREMIUM_USER, bot, config_dict, user, user_data
 from bot.helper.ext_utils.bot_utils import get_readable_file_size, sync_to_async
 from bot.helper.ext_utils.fs_utils import clean_unwanted, get_base_name, is_archive
-from bot.helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
 from bot.helper.ext_utils.leech_utils import get_document_type, get_media_info, take_ss, remove_unwanted, get_audio_thumb
 
 LOGGER = getLogger(__name__)
@@ -71,8 +70,6 @@ class TgUploader:
             'lprefix') or (config_dict['LEECH_FILENAME_PREFIX'] if 'lprefix' not in user_dict else '')
         self.__lremname = user_dict.get(
             'lremname') or (config_dict['LEECH_REMOVE_UNWANTED'] if 'lremname' not in user_dict else '')
-        self.__lcaption = user_dict.get('lcaption') or (config_dict['LEECH_FILENAME_CAPTION'] if 'lcaption' not in user_dict else '')
-#lcaption = config_dict['LEECH_FILENAME_CAPTION
         if not await aiopath.exists(self.__thumb):
             self.__thumb = None
         self.__upload_dest = user_dict.get('user_dump') or config_dict['USER_DUMP']
@@ -117,7 +114,7 @@ class TgUploader:
             return False
         return True
 
-    async def __prepare_file(self, file_, dirpath, isMirror=False):
+    async def __prepare_file(self, file_, dirpath):
         if self.__lprefix or self.__lremname:
             file_ = await remove_unwanted(file_, self.__lremname)
             file_ = f"{self.__lprefix} {file_}"
@@ -160,29 +157,7 @@ class TgUploader:
                 new_path = ospath.join(dirpath, f"{name}{ext}")
                 await aiorename(self.__up_path, new_path)
                 self.__up_path = new_path
-        #['CAP_FONT']}>" if config_dict['CAP_FONT'] else nfile_
-        if lcaption and dirpath and not isMirror:
-        
-            def lowerVars(match):
-                return f"{{{match.group(1).lower()}}}"
-
-            lcaption = lcaption.replace('\|', '%%').replace('\{', '&%&').replace('\}', '$%$').replace('\s', ' ')
-            slit = lcaption.split("|")
-            slit[0] = re_sub(r'\{([^}]+)\}', lowerVars, slit[0])
-            up_path = ospath.join(dirpath, prefile_)
-            dur, qual, lang, subs = await get_media_info(up_path, True)
-            cap_mono = slit[0].format(
-                filename = file_,
-                size = get_readable_file_size(await aiopath.getsize(up_path)),
-                duration = get_readable_time(dur),
-                quality = qual,
-                languages = lang,
-                subtitles = subs,
-                md5_hash = get_md5_hash(up_path)
-           )
-           #cap_mono = cap_mono.replace('%%', '|').replace('&%&', '{').replace('$%$', '}')
         return cap_mono
-        #return cap_mono
 
     async def __get_input_media(self, subkey, key, msg_list=None):
         rlist = []
