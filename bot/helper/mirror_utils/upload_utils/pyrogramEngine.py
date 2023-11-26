@@ -180,7 +180,7 @@ class TgUploader:
                 subtitles = subs,
                 md5_hash = get_md5_hash(up_path)
            )
-           cap_mono = cap_mono.replace('%%', '|').replace('&%&', '{').replace('$%$', '}')
+           #cap_mono = cap_mono.replace('%%', '|').replace('&%&', '{').replace('$%$', '}')
         return cap_mono
         #return cap_mono
 
