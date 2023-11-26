@@ -150,6 +150,10 @@ async def load_config():
     if len(LEECH_REMOVE_UNWANTED) == 0:
         LEECH_REMOVE_UNWANTED = ''
 
+    LEECH_FILENAME_CAPTION = environ.get('LEECH_FILENAME_CAPTION', '')
+    if len(LEECH_FILENAME_CAPTION) == 0:
+        LEECH_FILENAME_CAPTION = ''
+
     SEARCH_PLUGINS = environ.get('SEARCH_PLUGINS', '')
     if len(SEARCH_PLUGINS) == 0:
         SEARCH_PLUGINS = ''
