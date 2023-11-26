@@ -37,13 +37,13 @@ async def get_user_settings(from_user):
     rclone_path = f'rcl/{user_id}.conf'
     user_dict   = user_data.get(user_id, {})
     if user_dict.get('as_doc', False) or 'as_doc' not in user_dict and config_dict['AS_DOCUMENT']:
-        ltype = "DOCUMENT"
-        buttons.ibutton("Send As Media", f"userset {user_id} doc")
+        ltype = "ᴅᴏᴄᴜᴍᴇɴᴛ"
+        buttons.ibutton("sᴇᴛ ᴍᴇᴅɪᴀ", f"userset {user_id} doc")
     else:
-        ltype = "MEDIA"
-        buttons.ibutton("Send As Document", f"userset {user_id} doc")
+        ltype = "ᴍᴇᴅɪᴀ"
+        buttons.ibutton("sᴇᴛ ᴅᴏᴄᴜᴍᴇɴᴛ", f"userset {user_id} doc")
 
-    buttons.ibutton("Leech Splits", f"userset {user_id} lss")
+    buttons.ibutton("ʟᴇᴇᴄʜ sᴘʟɪᴛs", f"userset {user_id} lss")
     split_size = user_dict.get(
         'split_size', False) or config_dict['LEECH_SPLIT_SIZE']
     split_size = get_readable_file_size(split_size)
@@ -58,7 +58,7 @@ async def get_user_settings(from_user):
     else:
         media_group = 'Disabled'
 
-    buttons.ibutton("YT-DLP Options", f"userset {user_id} yto")
+    buttons.ibutton("ʏᴛ-ᴅʟᴘ ᴏᴘᴛɪᴏɴs", f"userset {user_id} yto")
     if user_dict.get('yt_opt', False):
         ytopt = user_dict['yt_opt']
     elif 'yt_opt' not in user_dict and (YTO := config_dict['YT_DLP_OPTIONS']):
@@ -66,21 +66,21 @@ async def get_user_settings(from_user):
     else:
         ytopt = 'None'
 
-    buttons.ibutton("Leech Prefix", f"userset {user_id} lprefix")
+    buttons.ibutton("sᴇᴛ ᴘʀᴇғɪx", f"userset {user_id} lprefix")
     if user_dict.get('lprefix', False):
         lprefix = user_dict['lprefix']
     elif 'lprefix' not in user_dict and (LP := config_dict['LEECH_FILENAME_PREFIX']):
         lprefix = LP
     else:
-        lprefix = 'None'
+        lprefix = 'ɴᴏɴᴇ'
 
-    buttons.ibutton("Thumbnail", f"userset {user_id} sthumb")
-    thumbmsg = "Exists" if await aiopath.exists(thumbpath) else "Not Exists"
+    buttons.ibutton("ᴛʜᴜᴍʙɴᴀɪʟ", f"userset {user_id} sthumb")
+    thumbmsg = "ᴇxɪsᴛs" if await aiopath.exists(thumbpath) else "ɴᴏᴛ ᴇxɪsᴛs"
 
-    buttons.ibutton("Rclone", f"userset {user_id} rcc")
-    rccmsg = "Exists" if await aiopath.exists(rclone_path) else "Not Exists"
+    buttons.ibutton("ʀᴄʟᴏɴᴇ", f"userset {user_id} rcc")
+    rccmsg = "ᴇxɪsᴛs" if await aiopath.exists(rclone_path) else "ɴᴏᴛ ᴇxɪsᴛs"
 
-    buttons.ibutton("User Dump", f"userset {user_id} user_dump")
+    buttons.ibutton("ʟᴇᴇᴄʜ ᴅᴜᴍᴘ", f"userset {user_id} user_dump")
     if user_dict.get('user_dump', False):
         user_dump = user_dict['user_dump']
     elif 'user_dump' not in user_dict and (UD := config_dict['USER_DUMP']):
